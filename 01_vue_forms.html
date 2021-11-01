@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Forms</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+    <div id="app">
+
+        <h1>Hello Vue Forms</h1>
+
+        <label for="name">Please enter your name: </label>
+        <!-- v-model sets up 2-way data binding -->
+        <input v-model="name" id="name">
+
+        <!-- Checks if name is true. Empty string is "falsy". Will display only if true. -->
+        <p v-if="name">
+        <!-- alternate: if name length greater than 2 <p v-if="name.length > 2"> -->
+            Your name is {{ name }}
+            <button v-on:click="clear">Clear Input</button>
+        </p>
+
+        <!-- v-else element must immediately v-if element -->
+        <p v-else>
+            Waiting for user input
+        </p>
+
+    </div>
+
+    <script>
+
+        let app = Vue.createApp({
+
+            data () {
+                return {
+                    name: ''
+                }
+            },
+
+            methods: {
+                clear() {
+                    this.name = ''
+                }
+            }
+
+        })
+
+        /* Associate 'app' Vue instance with div with "app" id */
+        app.mount('#app')
+
+    </script>
+
+</body>
+</html>

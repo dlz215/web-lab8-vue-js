@@ -1,0 +1,10 @@
+What does this Vue warning message mean?
+A value used in the HTML template was defined not in the Vue.js script.  For example, if you put "name" inside double curly braces in an HTML element, but do not define a "name" data property, function, or computed value in the script.
+
+Can you safely ignore it?
+In most cases, no.  It likely means that your Vue.js script will not know what to do with part of your HTML code.  Some piece of information will likely be missing from your page.
+
+What causes it, and how do you fix it? 
+The most common causes: putting a value in double curly braces but forgetting to define it in the script, or a typo which causes a mismatch between the template value and the definition in the script.
+
+Get the undefined property from dev tools, then add it to script in appropriate place, or rename an existing item in script so name matches.  

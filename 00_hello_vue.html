@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+    <div id="app">
+        <!--All elements managed by Vue will go here-->
+        <!--The "View"-->
+        <h1>Hello Vue!</h1>
+
+        <!--Binds data to view-->
+        <p>{{ messageWithExclamationPoints }}</p>
+
+        <!--Directive: v-on-->
+        <button v-on:click="addExclamation">Add !</button>
+
+        <button v-on:click="clear">Clear</button>
+
+    </div>
+
+    <script>
+
+        /* Create a Vue instance */
+        let app = Vue.createApp({
+
+            /* The "Model" */
+            /* Data function, returns an object */
+            /* Vue monitors properties of object */
+            data() {
+                return {
+                    message: 'hi',
+                    maxExclamationPoints: 10,
+                    currentExclamationPoints: 0
+                }
+            },
+
+            methods: {
+                addExclamation() {
+                    /* Must use "this" when referring back to properties defined in your Vue code */
+                    if (this.currentExclamationPoints < this.maxExclamationPoints) {
+                        this.currentExclamationPoints++
+                    } else {
+                        alert("Max exclamation points reached")
+                    }
+                },
+                clear() {
+                    this.currentExclamationPoints = 0
+                }
+            },
+
+            computed: {
+                messageWithExclamationPoints() {
+                    let messageWithExclamationPts = this.message
+                    for (let x = 0; x < this.currentExclamationPoints; x++) {
+                        messageWithExclamationPts = messageWithExclamationPts + '!'
+                    }
+                    return messageWithExclamationPts
+                }
+            }
+
+        })
+
+        /* Tells Vue instance that it'll manage everything inside 'app' div */
+        app.mount('#app')
+
+    </script>
+
+</body>
+</html>
